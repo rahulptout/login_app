@@ -1,5 +1,5 @@
 
-<% if user_signed_in? && current_user.id == 2 %>
+<% if user_signed_in? && current_user.email == "admin@gmail.com" %>
 
   <!-- Button trigger modal -->
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -41,17 +41,25 @@
     </tr>
     </thead>
     <% @users.each do |user| %>
-      <tr scope="row">
+      
+             <tr scope="row">
         <td><%= user.id %></td>
         <td><%= user.email %></td>
         <td><%= user.created_at %></td>
         <td><%= user.updated_at %></td>
         <td>
           <%= link_to "show",{:controller => 'home',:action => 'show',:id =>user.id} %>
-          <%= link_to 'delete',data: {:confirm => 'Are you sure?'}, :method => :delete %>
           <%= link_to("Edit",edit_home_path(user.id))%>
+           
+           <% next if user.admin? %>
+           <% next if user.super_admin? %>
+                 
+
+          <%= button_to 'delete',{:controller => 'home',:action => 'destroy',:id =>user.id},class: "btn btn-primary mb-2",:method => :delete %>
         </td>
       </tr>
+
+
     <% end %>
   </table>
 </div>
