@@ -49,13 +49,14 @@
         <td><%= user.updated_at %></td>
         <td>
           <%= link_to "show",{:controller => 'home',:action => 'show',:id =>user.id} %>
-          <%= link_to("Edit",edit_home_path(user.id))%>
-           
+          <%= link_to("Edit",admin_path(user.id))%>
+
+          <!-- edit_user_registration_path -->
+         
            <% next if user.admin? %>
            <% next if user.super_admin? %>
-                 
-
-          <%= button_to 'delete',{:controller => 'home',:action => 'destroy',:id =>user.id},class: "btn btn-primary mb-2",:method => :delete %>
+           <%= button_to 'delete',{:controller => 'home',:action => 'destroy',:id =>user.id},class: "btn btn-primary mb-2",:method => :delete %>
+          
         </td>
       </tr>
 

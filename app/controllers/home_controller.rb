@@ -21,7 +21,10 @@ class HomeController < ApplicationController
 
 
   def edit
-      redirect_to new_user_session_url 
+    
+    
+     @user = User.find(params[:id])
+
   end
     
 

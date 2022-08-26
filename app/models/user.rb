@@ -1,11 +1,25 @@
 class User < ApplicationRecord
   belongs_to :role
+  before_validation  :default_user
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
 
+   ROLE = Role.all.pluck(:name, :id)
+  
+
+   # default user option
+   # binding.pry
+
+   def default_user
+     self.role_id = Role.find_by(name: "user").id
+   end
+
+
+
+  
    # instance method
    def admin?
     role&.name == "admin"
