@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   # devise_for :users
   devise_for :users, path: 'user', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
-  get '/admin/:id', to: 'admin#edit', as: 'admin'
-
+  # get '/admin/:id', to: 'admin#edit', as: 'admin'
+  resources :admin, only: [:edit]
 
   resources :home
   # devise_for :views
