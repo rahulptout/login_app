@@ -1,23 +1,49 @@
 <div id="table-div">
   <table>
     <thead>
+ 
+
+    
+    <tr>
+      <th>Name</th>
+      <td><%= @user.name %></td>
+    </tr>
+
     <tr>
       <th>ID</th>
-      <th>Email</th>
-      <th>Created at</th>
-      <th>Updated at</th>
-      <th>Actions</th>
+       <td><%= @user.id %></td> 
     </tr>
-    </thead>
-      <tr>
-        <td><%= @user.id %></td>
-        <td><%= @user.email %></td>
-        <td><%= @user.created_at %></td>
-        <td><%= @user.updated_at %></td>
-        <td>
+    <tr>
+      <th>Email</th>
+      <td><%= @user.email %></td>  
+    </tr>
 
-        </td>
-      </tr>
+    <tr>
+      <th>Mobile</th>
+      <td><%= @user.mobile_no %></td>  
+    </tr>
+
+    <tr>
+      <th>Address</th>
+      <td><%= @user.address %></td>  
+    </tr>
+
+
+    <tr>
+      <th>Created at</th>
+        <td><%= @user.created_at %></td>
+    </tr>
+
+    <tr>
+      <th>Updated at</th>
+      <td><%= @user.updated_at %></td>  
+    </tr>
+
+
+
+    </thead>
   
   </table>
 </div>
+
+ <%= link_to "Home", root_path  %>

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  attr_accessor :current_password
   has_one :user_info
   include ActiveModel::Conversion
   extend  ActiveModel::Naming
@@ -19,6 +20,16 @@ class User < ApplicationRecord
      self.role_id = Role.find_by(name: "user").id
    end
 
+  def update_without_password(params, *options)
+  if params[:password].blank?
+    params.delete(:password)
+    params.delete(:password_confirmation) 
+  end
+
+  result = update_attributes(params, *options)
+  clean_up_passwords
+  result
+end
 
 
   

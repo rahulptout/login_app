@@ -35,7 +35,7 @@ class HomeController < ApplicationController
     
 
   def update
-    binding.pry
+   
     @user = User.find(params[:id])
     if @user.update()
       redirect_to @user
