@@ -5,7 +5,7 @@ class MyDevise::RegistrationsController < Devise::RegistrationsController
   if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
     params[:user].delete(:password)
     params[:user].delete(:password_confirmation)
-end
+ end
   @user = User.find(current_user.id)
   email_changed = @user.email != params[:user][:email]
   password_changed = params[:user][:password] && !params[:user][:password].empty?
@@ -28,24 +28,17 @@ end
 
 
 
-def user_params
-    params.require(:user).permit(:email, :password, :current_password,:password_confirmation,:role_id, :name, :mobile_no, :address)
+ def user_params
+    params.require(:user).permit(:city_id, :current_password,:role_id, :name, :mobile_no, :address)
   end
 
 
-protected
+ protected
 
 
-def update_resource(resource, params)
-    puts "params ===> #{params}"
-    if params[:password].blank? && params[:password_confirmation].blank?
-      params.delete(:password)
-      params.delete(:password_confirmation)
-      params.delete(:current_password)
-      resource.update_without_password(params)
-    else
-      super
-    end
+ def update_resource(resource, params)
+    params.delete :current_password
+    resource.update_without_password(params)
   end
 
 end	

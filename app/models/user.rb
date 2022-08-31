@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   attr_accessor :current_password
   has_one :user_info
+  belongs_to :city
   include ActiveModel::Conversion
   extend  ActiveModel::Naming
   belongs_to :role
@@ -20,18 +21,38 @@ class User < ApplicationRecord
      self.role_id = Role.find_by(name: "user").id
    end
 
-  def update_without_password(params, *options)
-  if params[:password].blank?
-    params.delete(:password)
-    params.delete(:password_confirmation) 
-  end
+        def update_without_password(params, *options)
+        if options.present?
+          ActiveSupport::Deprecation.warn <<-DEPRECATION.strip_heredoc
+            [Devise] The second argument of `DatabaseAuthenticatable#update_without_password`
+            (`options`) is deprecated and it will be removed in the next major version.
+            It was added to support a feature deprecated in Rails 4, so you can safely remove it
+            from your code.
+          DEPRECATION
+        end
 
-  result = update_attributes(params, *options)
-  clean_up_passwords
-  result
-end
+        params.delete(:password)
+        params.delete(:password_confirmation)
 
+        result = update(params, *options)
+        clean_up_passwords
+        result
+      end
 
+      # Destroy record when :current_password matches, otherwise returns
+      # error on :current_password. It also automatically rejects
+      # :current_password if it is blank.
+      def destroy_with_password(current_password)
+        result = if valid_password?(current_password)
+          destroy
+        else
+          valid?
+          errors.add(:current_password, current_password.blank? ? :blank : :invalid)
+          false
+        end
+
+        result
+      end
   
    # instance method
    def admin?

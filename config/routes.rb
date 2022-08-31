@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   
 
   # get '/admin/:id', to: 'admin#edit', as: 'admin'
-  resources :admin, only: [:edit]
+  resources :admin, only: [:edit ,:update]
 
   resources :home
   # devise_for :views

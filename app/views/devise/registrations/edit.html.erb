@@ -1,4 +1,10 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+<div class="card px-5 py-5">
+
+    
+ <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -30,40 +36,41 @@
   </div>
 
   
-  
   <div>     
      <%= f.select :role_id, Role.all.pluck(:name, :id) %>
   </div>
 
-
    <% end %>
 
-   <div>
+   <div class="forms-inputs mb-4">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
 
-  <div>
+  <div class="forms-inputs mb-4">
     <%= f.label :mobile_no %><br>
     <%= f.text_field :mobile_no %><br>
     
-  </div>
+  </div>    
 
-    
-
- <div>
+  <div class="forms-inputs mb-4">
     <%= f.label :address %><br>
     <%= f.text_field :address %>
   </div>
-  
 
-  <div class="field">
-    <%= f.label :current_password , disabled: true %> <br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
+  <div class="forms-inputs mb-4">
+    
+    <%= f.select :city_id, City.all.pluck(:city_name, :id) %>
+
   </div>
 
 
-  <div class="actions">
+   <div class="forms-inputs mb-4">
+    <%= f.label :current_password %> <br />
+    <%= f.password_field :current_password, autocomplete: "current-password" %>
+  </div>
+
+  <div class="actions forms-inputs mb-4">
     <%= f.submit "Update" %>
   </div>
 <% end %>
@@ -73,3 +80,8 @@
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>
+
+</div>
+</div>
+     </div>
+</div>
