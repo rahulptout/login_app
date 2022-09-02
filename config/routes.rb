@@ -5,6 +5,7 @@ Rails.application.routes.draw do
             
            }
   
+  resources :books
 
   # get '/admin/:id', to: 'admin#edit', as: 'admin'
   resources :admin, only: [:edit ,:update]

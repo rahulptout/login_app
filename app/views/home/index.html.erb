@@ -1,6 +1,6 @@
 
-<% if user_signed_in? && current_user.email == "admin@gmail.com" %>
-
+<% if user_signed_in? && current_user.admin? %>
+   <% binding.pry %>
   <!-- Button trigger modal -->
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Hello, Admin
@@ -54,7 +54,6 @@
           <!-- edit_user_registration_path -->
          
            <% next if user.admin? %>
-          
            <%= button_to 'delete',{:controller => 'home',:action => 'destroy',:id =>user.id},class: "btn btn-primary mb-2",:method => :delete %>
           
         </td>
@@ -70,6 +69,10 @@
             <h1><%="Hello,#{current_user.name}"%></h1>
             <%= link_to "Enter Infomation", edit_user_registration_path %><br>
                                     <!-- edit_admin_path(current_user.id)           -->
+            <%= link_to "Enter New Book", {:controller => "books", :action => "new", :user_id => current_user.id }  %><br>
+               <%#= link_to "Enter New Book1", new_book_url(:id =>current_user.id) %>    
+               <%= link_to "book index", books_url %>
+
               <% end %> 
 
                     <% end %>

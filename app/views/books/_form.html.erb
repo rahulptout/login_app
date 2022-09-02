@@ -1,0 +1,70 @@
+<%= form_with model: book do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+    <% book.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+
+    <div>
+    <%= form.label :auther_name %><br>
+    <%= form.text_field :auther_name %>
+    <% book.errors.full_messages_for(:auther_name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+
+
+
+    <div>
+    <%= form.label :issue_date %><br>
+    <%= form.date_field :issue_date, "data-provide" => 'datepicker' %>
+    <% book.errors.full_messages_for(:issue_date).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+
+
+    <div>
+    <%= form.label :return_date %><br>
+      <%= form.date_field :return_date, "data-provide" => 'datepicker' %>
+    <% book.errors.full_messages_for(:return_date).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+
+
+    <div>
+    <%= form.label :number_of_pages %><br>
+    <%= form.text_field :number_of_pages %>
+    <% book.errors.full_messages_for(:number_of_pages).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %><br>
+    <% book.errors.full_messages_for(:description).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+    
+ <div>
+   
+ </div> 
+
+  <%#=form.hidden_field :user_id, input_html: { value: @user_id } %>
+  <%# @id = session[:user_id] %>
+   <%= form.hidden_field :user_id, value: @id %>
+   
+  
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

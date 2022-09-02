@@ -2,10 +2,14 @@ class User < ApplicationRecord
   attr_accessor :current_password
   has_one :user_info
   belongs_to :city
+  has_many :books
   include ActiveModel::Conversion
   extend  ActiveModel::Naming
   belongs_to :role
   before_validation  :default_user
+  before_validation  :default_city ,on: [:create] 
+
+     
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -54,6 +58,12 @@ class User < ApplicationRecord
         result
       end
   
+   def default_city
+      # binding.pry
+     self.city_id = City.find_by(city_name: "indore").id
+   end
+   
+
    # instance method
    def admin?
     role&.name == "admin"

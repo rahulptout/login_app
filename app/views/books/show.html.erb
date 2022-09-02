@@ -1,0 +1,38 @@
+
+
+             <div id="table-div">
+  <table class="table" >
+    <thead>
+    <tr>
+       <th scope="col">ID</th>  
+      <th scope="col">Name</th>
+      <th scope="col">Auther name</th>
+      <th scope="col">Issue date</th>
+      <th scope="col">Return date</th>
+      <th scope="col">User id</th>
+      <th scope="col">Number of pages</th>
+      <th scope="col">Description</th>
+      <th scope="col">Actions</th>
+    </tr>
+    </thead>
+      
+             <tr scope="row">
+        <td><%= @book.id %></td>
+        <td><%= @book.name %></td>
+        <td><%= @book.auther_name %></td>
+        <td><%= @book.issue_date %></td>
+        <td><%= @book.return_date %></td>
+        <td><%= @book.user_id %></td>
+        <td><%= @book.number_of_pages %>
+        <td><%= @book.description %></td>
+        <td>
+          <%= link_to("Edit",edit_book_path(@book.id))%>
+
+         
+        </td>
+      </tr>   
+  </table>
+</div>
+
+ 
+ <%= link_to("All book",books_path) %>
