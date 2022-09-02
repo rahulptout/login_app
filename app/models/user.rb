@@ -6,7 +6,7 @@ class User < ApplicationRecord
   include ActiveModel::Conversion
   extend  ActiveModel::Naming
   belongs_to :role
-  before_validation  :default_user
+  before_validation  :default_user ,on: :create
   before_validation  :default_city ,on: [:create] 
 
      
@@ -66,6 +66,7 @@ class User < ApplicationRecord
 
    # instance method
    def admin?
+
     role&.name == "admin"
    end 
 

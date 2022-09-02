@@ -14,10 +14,11 @@
     </tr>
     </thead>
     <% @books.each do |book| %>
+           <% #binding.pry %> 
+       <% unless current_user.admin? 
+         next book.user_id = current_user.id
 
-       <% next if book.user_id != current_user.id %>
-         
-                
+             end %>   
 
              <tr scope="row">
         <td><%= book.id %></td>
@@ -32,6 +33,10 @@
           <%= link_to "show","/books/#{book.id}" %>
           <%= link_to("Edit",edit_book_path(book.id))%>
 
+          <% next if current_user.admin? %>
+          
+           <%= button_to 'delete',{:controller => 'books',:action => 'destroy',:id =>book.id},class: "btn btn-primary mb-2",:method => :delete %>
+          
          
          
           

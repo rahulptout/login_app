@@ -1,6 +1,6 @@
-
-<% if user_signed_in? && current_user.admin? %>
-   <% binding.pry %>
+ 
+<% if user_signed_in? && User.admin?(current_user) %>
+   <%= link_to "book index", books_url %><br>
   <!-- Button trigger modal -->
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Hello, Admin
