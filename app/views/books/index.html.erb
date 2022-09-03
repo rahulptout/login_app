@@ -1,4 +1,4 @@
- <div id="table-div">
+<div id="table-div">
   <table class="table" >
     <thead>
     <tr>
@@ -13,14 +13,13 @@
       <th scope="col">Actions</th>
     </tr>
     </thead>
+      
     <% @books.each do |book| %>
-           <% #binding.pry %> 
-       <% unless current_user.admin? 
-         next book.user_id = current_user.id
+           <% #binding.pry %>      
 
-             end %>   
+         <% current_user.admin? ? true : next if book.user_id != current_user.id %>
 
-             <tr scope="row">
+      <tr scope="row">
         <td><%= book.id %></td>
         <td><%= book.name %></td>
         <td><%= book.auther_name %></td>
@@ -32,21 +31,14 @@
         <td>
           <%= link_to "show","/books/#{book.id}" %>
           <%= link_to("Edit",edit_book_path(book.id))%>
-
           <% next if current_user.admin? %>
           
            <%= button_to 'delete',{:controller => 'books',:action => 'destroy',:id =>book.id},class: "btn btn-primary mb-2",:method => :delete %>
           
-         
-         
-          
-           
-          
         </td>
       </tr>
-
-    
     <% end %>
+
   </table>
 </div>
 
