@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+   before_action :authenticate_user!
   def index
     @users = User.all 
       
@@ -28,7 +29,7 @@ class HomeController < ApplicationController
 
 
   def edit
-      # binding.pry
+     
      @user = User.find(params[:id])
 
   end

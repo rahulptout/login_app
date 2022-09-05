@@ -2,18 +2,16 @@ class Book < ApplicationRecord
   belongs_to :user
   # cattr_accessor :user  # it's accessible outside Comment
   # attr_accessor :book 
-  # before_validation :global_user
+  before_validation :global_user,on: :update
+ 
  
 
 
-  # def global_user(id)
-  # 	# binding.pry
-  #   # Book.user_id = current_user.id
-  #    # @user = User.find(params[:id])
-  #      # id
-  #     # binding.pry
-     
-  # end
+  def global_user
+  	 # binding.pry
+     self.user_id = user_id
+
+  end
 
 
 

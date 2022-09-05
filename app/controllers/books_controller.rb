@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-
+   before_action :authenticate_user!
     def index
      @books = Book.all
      @id= session[:user_id]
@@ -44,11 +44,13 @@ class BooksController < ApplicationController
     def update
     
      @book = Book.find(params[:id])
+     # binding.pry
      if @book.update(book_params)
+
      	redirect_to @book
 
      else 
-        render :edit, status: 	:unprocessable_entity
+        render :edit, status:	:unprocessable_entity
       end
  
     end
