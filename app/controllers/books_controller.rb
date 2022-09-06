@@ -2,7 +2,7 @@ class BooksController < ApplicationController
    before_action :authenticate_user!
     def index
      @books = Book.all
-     @id= session[:user_id]
+     # @id= session[:user_id]
      # binding.pry
     end
   
@@ -17,8 +17,8 @@ class BooksController < ApplicationController
        @book = Book.new
        @user_id = params[:user_id]
        @user = User.find(params[:user_id])
-       @id =  @user.id
-      session[:user_id] = @id
+       session[:id] =  @user.id
+      # session[:user_id] = @id
     end
 
 

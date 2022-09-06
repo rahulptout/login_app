@@ -65,8 +65,8 @@
  </div> 
 
   <%#=form.hidden_field :user_id, input_html: { value: @user_id } %>
-  <%# @id = session[:user_id] %>
-   <%= form.hidden_field :user_id, value: @id %>
+  <%# @id = session[:id] %>
+   <%= form.hidden_field :user_id, value: session[:id] %>
   
   
   <div>

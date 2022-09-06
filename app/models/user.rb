@@ -16,7 +16,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-   ROLE = Role.all.pluck(:name, :id)
+   # ROLE = Role.all.pluck(:name, :id)
 
    # default user option
    # binding.pry
