@@ -1,5 +1,5 @@
 <div id="table-div">
-  <table class="table" >
+  <table class="table table-hover" >
     <thead>
     <tr>
        <th scope="col">ID</th>
@@ -29,14 +29,15 @@
         <td><%= book.number_of_pages %>
         <td><%= book.description %></td>
         <td>
-          <%= link_to "show","/books/#{book.id}" %>
-          <%= link_to("Edit",edit_book_path(book.id))%>
+          <div class="btn-group" aria-label="Basic mixed styles example">
+          <%= link_to("Edit",edit_book_path(book.id),class: "btn btn-success")%>
+          <%= link_to "show","/books/#{book.id}",class: "btn btn-warning" %>
           
 
           <% next if !current_user.admin? %>
           
-           <%= button_to 'delete',{:controller => 'books',:action => 'destroy',:id =>book.id},:remote => true, class: "btn btn-primary mb-2",:method => :delete %>
-          
+           <%= button_to 'delete',{:controller => 'books',:action => 'destroy',:id =>book.id},class: "btn btn-danger",:remote => true,:method => :delete %>
+          </div>
         </td>
       </tr>
     <% end %>
@@ -44,4 +45,6 @@
   </table>
 </div>
 
-<%= link_to("User Home",root_path)%>
+<div class="col-md-12 text-center">
+  <%= link_to("User Home",root_path,class: "btn btn-outline-success") %>
+</div>

@@ -1,6 +1,8 @@
  <%#if user_signed_in? && %>
 <% if User.admin?(current_user) %>
-   <%= link_to "book index", books_url %><br>
+   <div class="col-md-12 text-center">
+   <%= link_to "book index", books_url,class:"btn btn-primary" %>
+ </div>
   <!-- Button trigger modal -->
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Hello, Admin
@@ -30,7 +32,7 @@
 
   
 <div id="table-div">
-  <table class="table" >
+  <table class="table table-hover" >
     <thead>
     <tr>
       <th scope="col">ID</th>
@@ -48,14 +50,13 @@
         <td><%= user.created_at %></td>
         <td><%= user.updated_at %></td>
         <td>
-          <%= link_to "show",{:controller => 'home',:action => 'show',:id =>user.id} %>
-          <%= link_to("Edit",edit_user_registration_path(user.id))%>
-
+          <div class="btn-group" aria-label="Basic mixed styles example">
+          <%= link_to("Edit",edit_user_registration_path(user.id),class: "btn btn-success")%>
+          <%= link_to "show",{:controller => 'home',:action => 'show',:id =>user.id},class: "btn btn-warning" %>
           <!-- edit_user_registration_path -->
-         
            <% next if user.admin? %>
-           <%= button_to 'delete',{:controller => 'home',:action => 'destroy',:id =>user.id},class: "btn btn-primary mb-2",:method => :delete %>
-          
+           <%= button_to 'delete',{:controller => 'home',:action => 'destroy',:id =>user.id},class: "btn btn-danger",:method => :delete %>
+          </div>
         </td>
       </tr>
 
@@ -66,13 +67,15 @@
 
          <% else %>
           <% if user_signed_in? %>
-            <h1><%="Hello,#{current_user.name}"%></h1>
-            <%= link_to "Enter Infomation", edit_user_registration_path %><br>
+           <div>
+              <h1><%="Hello,#{current_user.name}"%></h1>
+            <%= link_to "Enter Infomation", edit_user_registration_path ,class: "btn btn-primary mb-2"%><br>
                                     <!-- edit_admin_path(current_user.id)           -->
-            <%= link_to "show user info","/home/#{current_user.id}" %>  <br>                      
-            <%= link_to "Enter New Book", {:controller => "books", :action => "new", :user_id => current_user.id }  %><br>
+            <%= link_to "show user info","/home/#{current_user.id}" ,class: "btn btn-primary mb-2" %>  <br>                      
+            <%= link_to "Enter New Book", {:controller => "books", :action => "new", :user_id => current_user.id },class: "btn btn-primary mb-2"  %><br>
                <%#= link_to "Enter New Book1", new_book_url(:id =>current_user.id) %>    
-               <%= link_to "book index", books_url %>
+               <%= link_to "book index", books_url ,class: "btn btn-primary mb-2" %>
+           </div>
              
               <% end %> 
 
