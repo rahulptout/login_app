@@ -61,11 +61,15 @@
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
                 <% if user_signed_in? %> 
-                 <li><%= link_to 'Logout', destroy_user_session_path, method: :delete, :class => "nav-link" %></li>
+                 <li>
+                    <%= link_to 'Logout', destroy_user_session_path, method: :delete, :class => "nav-link" %></li>
                 
                  <% else %>
-                <li> 
-                  <%= link_to 'Login', new_user_session_url,:class => "nav-link"  %>
+                <li>
+                   <!-- Button trigger modal -->
+ 
+                   <%= link_to 'Login', new_user_session_url,:class => "nav-link","data-bs-toggle" => "modal", "data-bs-target" => "#exampleModal"  %>   
+                 
                 </li>
                  <li>
                      <span class="nav-link">|</span>
@@ -98,8 +102,8 @@
 
   
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <!-- <p class="notice"><%= notice %></p> -->
+  <!-- <p class="alert"><%= alert %></p> -->
 
     <%= yield %>
   </body>

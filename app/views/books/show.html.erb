@@ -1,7 +1,5 @@
-
-
-             <div id="table-div">
-  <table class="table" >
+<div id="table-div">
+  <table class="table table-hover" >
     <thead>
     <tr>
        <th scope="col">ID</th>  
@@ -26,13 +24,21 @@
         <td><%= @book.number_of_pages %>
         <td><%= @book.description %></td>
         <td>
-          <%= link_to("Edit",edit_book_path(@book.id))%>
+          <%= link_to("Edit",edit_book_path(@book.id),class: "btn btn-success")%>
 
          
         </td>
       </tr>   
   </table>
 </div>
+  <div class="col-md-12 text-center">
+     <% if @book.return_date == @book.count_penalty %>
+   <p class="green">Return Date : <%= @book.count_penalty %></p>
+   <% else %>
+     <p class="red">Late return penalty : <%= @book.count_penalty %></p>    
+  <% end %>
 
- 
- <%= link_to("All book",books_path) %>
+  </div>
+ <div class="col-md-12 text-center">
+ <%= link_to("Show your all book",books_path,class: "btn btn-primary") %>
+</div>
