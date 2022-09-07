@@ -6,7 +6,8 @@
       <th scope="col">Name</th>
       <th scope="col">Auther name</th>
       <th scope="col">Issue date</th>
-      <th scope="col">Return date</th>
+      <th scope="col">User Return date</th>
+      <th scope="col">Due date</th>
       <th scope="col">User id</th>
       <th scope="col">Number of pages</th>
       <th scope="col">Description</th>
@@ -20,6 +21,7 @@
         <td><%= @book.auther_name %></td>
         <td><%= @book.issue_date %></td>
         <td><%= @book.return_date %></td>
+        <td><%= @book.due_date %></td>
         <td><%= @book.user_id %></td>
         <td><%= @book.number_of_pages %>
         <td><%= @book.description %></td>
@@ -33,7 +35,7 @@
 </div>
   <div class="col-md-12 text-center">
      <% if @book.return_date == @book.count_penalty %>
-   <p class="green">Return Date : <%= @book.count_penalty %></p>
+   <p class="green">Due date : <%= @book.due_date %></p>
    <% else %>
      <p class="red">Late return penalty : <%= @book.count_penalty %></p>    
   <% end %>

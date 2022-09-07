@@ -3,6 +3,7 @@ class City < ApplicationRecord
 
 
    def self.admin(obj)
+    # binding.pry
        obj.city.city_name
    end 
 

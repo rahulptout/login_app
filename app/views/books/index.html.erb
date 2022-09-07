@@ -10,6 +10,7 @@
       <th scope="col">User id</th>
       <th scope="col">Number of pages</th>
       <th scope="col">Description</th>
+      <th scope="col">Due Date</th>
       <th scope="col">Actions</th>
     </tr>
     </thead>
@@ -28,6 +29,7 @@
         <td><%= book.user_id %></td>
         <td><%= book.number_of_pages %>
         <td><%= book.description %></td>
+        <td><%= book.due_date %></td>
         <td>
           <div class="btn-group" aria-label="Basic mixed styles example">
           <%= link_to("Edit",edit_book_path(book.id),class: "btn btn-success")%>

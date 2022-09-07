@@ -46,7 +46,7 @@ class BooksController < ApplicationController
      @book = Book.find(params[:id])
      # binding.pry
      if @book.update(book_params)
-
+      # binding.pry
      	redirect_to @book
 
      else 
@@ -71,7 +71,7 @@ class BooksController < ApplicationController
    private
     
     def book_params
-    params.require(:book).permit(:name, :auther_name, :issue_date, :return_date,:number_of_pages,:description,:user_id)
+    params.require(:book).permit(:name, :auther_name, :issue_date, :return_date,:number_of_pages,:description,:user_id,:due_date)
     # .merge(:session[:user_id])
   end
     end 

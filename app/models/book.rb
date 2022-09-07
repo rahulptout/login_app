@@ -2,15 +2,17 @@ class Book < ApplicationRecord
   belongs_to :user
   # cattr_accessor :user  # it's accessible outside Comment
   # attr_accessor :book 
-  before_validation :user_id_pass,on: :update
+  before_validation :user_id_pass,on: [:update]
   # validates :auther_name, format: {with: /\A[a-zA-Z]+\z/, message: 'only letters are allowed'}
-   validate :current_date, :days_count
-
+   validate :current_date,on: [:create]
+   validate :days_count
+  before_validation :default_due_date
 
   def user_id_pass
-  	 # binding.pry
-     self.user_id = user_id
-
+     book = Book.find(id)
+     self.user_id = book.user_id
+  	
+      
   end
 
 
@@ -24,13 +26,18 @@ class Book < ApplicationRecord
     end  
   end
 
+    def default_due_date
+   
+     self.due_date = issue_date + 20.day
+     
+    end
 
 
     def days_count
-    if month =  return_date.month- issue_date.month
+    if day =  return_date.day - issue_date.day
       # binding.pry
-       if month>0
-         errors.add(:return_date, "only current month")
+       if day>20
+         errors.add(:return_date, " is not more than 20 days")
        end  
     else
       errors.add(:return_date, "enter return date accept")
@@ -38,10 +45,10 @@ class Book < ApplicationRecord
   end
 
   def count_penalty
-    if Date.today > return_date
-        penalty_days =  Date.today.day - return_date.day
+    if Date.today > due_date
+        penalty_days =  due_date.day - due_date.day
         
-         penalty = (penalty_days-1)*10
+         penalty = (penalty_days)*10
          return penalty
     else 
         return return_date
