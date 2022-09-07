@@ -1,5 +1,6 @@
 class Book < ApplicationRecord
   belongs_to :user
+  has_many :reviews
   # cattr_accessor :user  # it's accessible outside Comment
   # attr_accessor :book 
   before_validation :user_id_pass,on: [:update]

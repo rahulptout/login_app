@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_one :user_info
   belongs_to :city
   has_many :books
+  
   include ActiveModel::Conversion
   extend  ActiveModel::Naming
   belongs_to :role

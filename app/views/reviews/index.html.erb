@@ -1,0 +1,39 @@
+<div id="table-div">
+  <table class="table table-hover" >
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">User name</th>
+      <th scope="col">Review</th>
+    </tr>
+    </thead>
+      
+    <% @reviews.each do |review| %>
+           <% #binding.pry %>      
+
+         <% current_user.admin? ? true : next if review.book_id != current_user.id %>
+
+      <tr scope="row">
+        <td><%= review.id %></td>
+        <td><%= review.user_name %></td> 
+       <td><%= review.review %></td>
+        <td>
+          <div class="btn-group" aria-label="Basic mixed styles example">
+          <%= link_to("Edit",edit_review_path(review.id),class: "btn btn-success")%>
+          <%= link_to "show","/reviews/#{review.id}",class: "btn btn-warning" %>
+          
+
+          <% next if !current_user.admin? %>
+          
+           <%= button_to 'delete',{:controller => 'reviews',:action => 'destroy',:id =>book.id},class: "btn btn-danger",:remote => true,:method => :delete %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+
+  </table>
+</div>
+
+<div class="col-md-12 text-center">
+  <%= link_to("User Home",root_path,class: "btn btn-outline-success") %>
+</div>

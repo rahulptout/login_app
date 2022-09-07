@@ -34,6 +34,7 @@
           <div class="btn-group" aria-label="Basic mixed styles example">
           <%= link_to("Edit",edit_book_path(book.id),class: "btn btn-success")%>
           <%= link_to "show","/books/#{book.id}",class: "btn btn-warning" %>
+          <%= link_to "review", {:controller => "reviews", :action => "new", :user_id => book.id },class: "btn btn-danger"  %><br>
           
 
           <% next if !current_user.admin? %>

@@ -73,7 +73,8 @@
             <%= link_to "show user info","/home/#{current_user.id}" ,class: "btn btn-primary mb-2" %>  <br>                      
             <%= link_to "Enter New Book", {:controller => "books", :action => "new", :user_id => current_user.id },class: "btn btn-primary mb-2"  %><br>
                <%#= link_to "Enter New Book1", new_book_url(:id =>current_user.id) %>    
-               <%= link_to "book index", books_url ,class: "btn btn-primary mb-2" %>
+               <%= link_to "book index", books_url ,class: "btn btn-primary mb-2" %><br>
+              
            </div>
              
               <% end %> 
